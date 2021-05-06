@@ -1,0 +1,86 @@
+
+//  comment
+
+M  node breaker with mulch
+S  deployer with saplings
+C  node breaker with chainsaw
+A  autocrafter: crafts mulch of leaves and woods
+>  stackwise filter-injector
+)  itemwise filter-injector
+z  delayer
+
+
+MESECONS AND DIGILINES connections scheme:
+0  mesecons lever
+1  luacontroller: switch.lua
+2  luacontroller: detector controller.lua
+3  luacontroller: plant controller.lua
+4  lua tube: mulch production.lua
+-  mesecon (maybe insulated)
+=  digiline
+D  node detector
+L  LCD, channel: lcd
+l  LCD, channel: lcd_p
+X  a place where trees will grow. All detectors breakers and deployers must aim to this point
+
+//////////////////////////////////////////////////////
+
+0
+1L-D  //detects default:sapling
+==2D  //detects default:tree
+ =-D  //detects nothing, not really intended
+ =
+ =----
+ =-  M
+ =3-SX
+ =-  C)-
+ =----z-
+ =
+ 4l
+A>
+
+///////////////////////////////////////////////////////
+
+PNEUMATIC TUBES connections scheme:
+4  lua tube: mulch production.lua
+5  teleporting tube receiever: mulch
+6  teleporting tube sender: leaves and trees
+7  teleporting tube sender: other
+8  teleporting tube receiever: leaves and trees
+9  teleporting tube sender: mulch
+o  teleporting tube receiever: other
+~  pneumatic tube
+U  self-contained injector
+B  technic MV battery, must be connected to the network and have an upgrade of a control logic unit
+w  adjustable vacuuming pneumatic tube. Must cover all the space of this machine
+i  sorting tube
+R  drawer or chest
+r  chest
+T  trash can
+ 
+//main part////////////////////////////////////////////
+ ~U U~~  
+5~MXC)~B
+   S
+   ~
+  6i7
+   w
+
+//mulch production part////////////////////////////////
+
+ 8
+~47
+A>9
+
+//sorting part/////////////////////////////////////////
+
+ o
+Ri  //sends leaves to the chest, other to the next sorter
+Ri  //sends trees to the chest, other to the next sorter
+Ri  //sends apples to the chest, other to the next sorter
+Ri  //sends saplings to the chest, other to the next sorter
+Ri  //sends mulch to the chest, other to the next sorter
+ri  //sends leaves, trees, saplings, apples, mulch to the trash, other to the chest
+ T
+
+////////////////////////////////////////////////////////
