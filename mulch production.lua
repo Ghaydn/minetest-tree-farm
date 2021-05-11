@@ -1,6 +1,7 @@
 --Infinite tree farm: mulch production controller
 --
 --License: GNU AGPL
+--Copyright Ghaydn (ghaydn@ya.ru), 2021
 --
 --Download full code: github.com/Ghaydn/minetest-tree-farm
 --
